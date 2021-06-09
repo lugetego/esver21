@@ -1,0 +1,370 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'form/form_errors.html.twig' %}
+
+
+{% block body %}
+
+    {{ form_errors(form) }}
+
+
+    <div class="container">
+
+        {% block info %}
+            <strong><span class="glyphicon glyphicon-warning-sign"></span> Importante</strong> <br><br>
+            <p> -Los campos marcados con * son obligatorios.</p>
+            <p class="text-justify">-Al finalizar el envío de este formulario debes de visualizar una pantalla de confirmación. Además, recibirás un correo electrónico a la cuenta que proporcionaste,
+                de no ser así favor de revisar tu carpeta de correos no desados o comunicarte al correo <strong>webmaster@matmor.unam.mx</strong> para asegurarte que hayamos recibido tu solicitud.
+            </p>
+            -Fecha límite para realizar tu registro: <mark>22 de julio de 2021</mark>.
+        {% endblock %}
+
+        {{ form_start(form) }}
+
+        <h1><small><i class="fa fa-user"></i> Datos personales</small></h1>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <div>
+                                    {{ form_label(form.nombre) }}
+                                </div>
+                                <div>
+                                    {{ form_widget(form.nombre,{'attr': {'class': 'form-control input-sm', 'placeholder':'Nombre'} } ) }}
+                                </div>
+                                <div>{{ form_errors(form.nombre) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <div>
+                                    {{ form_label(form.paterno) }}
+                                </div>
+                                <div>
+                                    {{ form_widget(form.paterno, {'attr': {'class': 'form-control input-sm', 'placeholder':'Apellido paterno'} } ) }}
+                                </div>
+                                <div>{{ form_errors(form.paterno) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <div>
+                                    {{ form_label(form.materno) }}
+                                </div>
+                                <div>
+                                    {{ form_widget(form.materno, {'attr': {'class': 'form-control input-sm','placeholder':'Opcional en caso de ser extranjero'} } ) }}
+                                </div>
+                                <div>{{ form_errors(form.materno) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <div >
+                                    {{ form_label(form.sexo) }}
+                                </div>
+                                <div>
+                                    {% spaceless %}
+                                        {% for child in form.sexo %}
+                                            <div class="radio-inline">
+                                                {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'btn btn-default btn-xs'}}) }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endspaceless %}
+                                </div>
+                                <div>{{ form_errors(form.sexo) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <div>{{ form_label(form.nacimiento) }}</div>
+                                <div class="col-lg-4" >{{ form_widget(form.nacimiento.day, {'attr': {'class': 'form-control input-sm'} } ) }}</div>
+                                <div class="col-lg-4" >{{ form_widget(form.nacimiento.month, {'attr': {'class': 'form-control input-sm'} } ) }}</div>
+                                <div class="col-lg-4" >{{ form_widget(form.nacimiento.year, {'attr': {'class': 'form-control input-sm'} } ) }}</div>
+                                <div>{{ form_errors(form.nacimiento) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" >
+                            <div class="form-group">
+                                <div>{{ form_label(form.mail) }}</div>
+                                <div>{{ form_widget(form.mail, {'attr': {'class': 'form-control input-sm', 'placeholder':'Correo electrónico'} } ) }}</div>
+                                <div>{{ form_errors(form.mail) }}</div><br>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <h1><small><i class="fa fa-book"></i> Datos académicos</small></h1>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                        <div class="form-group">
+                            <div class="col-lg-4" >
+                                <div>{{ form_label(form.procedencia) }}</div>
+                                <div>{{ form_widget(form.procedencia, {'attr': {'class': 'form-control input-sm' , 'placeholder':'Universidad de procedencia'} } ) }}</div>
+                                <div>{{ form_errors(form.procedencia) }}</div>
+                            </div>
+                            <div class="col-md-4" >
+                                <div>{{ form_label(form.carrera) }}</div>
+                                <div>{{ form_widget(form.carrera, {'attr': {'class': 'form-control input-sm', 'placeholder':'Carrera'} } ) }}</div>
+                                <div>{{ form_errors(form.carrera) }}</div><br>
+                            </div>
+                            <div class="col-md-4" >
+                                <div>{{ form_label(form.semestre) }}</div>
+                                <div>{{ form_widget(form.semestre, {'attr': {'class': 'form-control input-sm', 'placeholder':'Semestre o cuatrimestre'} } ) }}</div>
+                                <div>{{ form_errors(form.semestre) }}</div><br>
+                            </div>
+                            <div class="col-md-4" >
+                                <div>{{ form_label(form.porcentaje) }}</div>
+                                <div>{{ form_widget(form.porcentaje, {'attr': {'class': 'form-control input-sm'} } ) }}</div>
+                                <div>{{ form_errors(form.porcentaje) }}</div><br>
+                            </div>
+                            <div class="col-md-4" >
+                                <div>{{ form_label(form.promedio) }}</div>
+                                <div>{{ form_widget(form.promedio, {'attr': {'class': 'form-control input-sm'} } ) }}</div>
+                                <div>{{ form_errors(form.promedio) }}</div><br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <h1><small><i class="fa fa-clock-o"></i> Participaciones anteriores</small></h1>
+
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <div class="col-lg-6" >
+                                <div>{{ form_label(form.participado) }}</div>
+                                <div>
+                                    {% spaceless %}
+                                        {% for child in form.participado %}
+                                            <div class="radio-inline">
+                                                {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'btn btn-default btn-xs'}}) }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endspaceless %}
+                                </div>
+                                <div>{{ form_errors(form.participado) }}</div>
+                            </div>
+                            <div class="col-lg-6" >
+                                <div>{{ form_label(form.evento) }}</div>
+                                <div>{{ form_widget(form.evento, {'attr': {'class': 'form-control input-sm', 'placeholder':'Año, evento y lugar donde ha participado'} } ) }}</div>
+                                <div>{{ form_errors(form.evento) }}</div><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1><small><i class="fa fa-calculator"></i> {{ evento }}</small></h1>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12"><p>El participante  deberá tomar tres cursos, las opciones a elegir son las siguientes:</p></div>
+                        <div class="col-md-6" >
+                            <div>{{ form_label(form.cursog1) }}</div>
+                            <a type="button"  class="btn btn-primary btn-xs" data-toggle="modal" data-target=".g1"><i class="fa fa-external-link" aria-hidden="true"></i>
+                                Consultar cursos</a>
+                            <div>
+                                <br>{{ form_widget(form.cursog1, {'attr': {'class': 'form-control input-sm'} } ) }}</div>
+                            <div>{{ form_errors(form.cursog1) }}</div>
+                        </div>
+
+
+                        <div class="col-md-6" >
+                            <div>{{ form_label(form.cursog2) }}</div>
+                            <a type="button"  class="btn btn-primary btn-xs" data-toggle="modal" data-target=".g2"><i class="fa fa-external-link" aria-hidden="true"></i>
+                                Consultar cursos</a>
+                            <div>
+
+                                <br>{{ form_widget(form.cursog2, {'attr': {'class': 'form-control input-sm'} } ) }}</div>
+                            <div>{{ form_errors(form.cursog2) }}</div>
+                        </div>
+
+                        <div class="col-md-12" ><br>
+                            <div>{{ form_label(form.razones) }}</div>
+                            <div>{{ form_widget(form.razones, {'attr': {'class': 'form-control input-sm', 'rows':'4', 'placeholder':'Razones por las que desea entrar a la escuela'} } ) }}</div>
+                            <div>{{ form_errors(form.razones) }}</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7 col-lg-offset-5">
+            <input type="submit" value="Enviar"  class="btn btn-primary"/>
+
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
+
+
+
+    <!-- Large modal G1 -->
+    <div class="modal fade g1" tabindex="-1" role="dialog" aria-labelledby="g1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cursos G1</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>A1 - Breve introducción a los polinomios ortogonales, <em>Dr. Abdón Choque</em></strong></p>
+                    <p class="text-justify"><strong>Resumen:</strong> Los polinomios ortogonales aparecen en diversas
+                        áreas de las matemáticas y física, por ejemplo, en la teoría de la aproximación, ecuaciones
+                        diferenciales parciales, teoría de la probabilidad, teoría de control, mecánica cuántica,
+                        teoría de circuitos eléctricos, teoría de procesamiento de señales, entre otros. En el mini
+                        curso consideraremos algunas nociones y resultados importantes relacionados con los polinomios
+                        ortogonales como ser: Ortogonalidad de polinomios en un intervalo finito o infinito en eje real
+                        respecto de una función no decreciente de variación acotada. Polinomios ortogonales clásicos.
+                        La relación de recurrencia a tres términos. Ceros de los polinomios ortogonales. Relación entre
+                        los polinomios ortogonales en [0,\infty) y los polinomios de Hurwitz.</p>
+                    <hr>
+                    <p><strong>B1 - Reflexiones acerca de Coxeter y sus grupos,
+                             <em>Dr. Daniel Pellicer</em></strong></p>
+                    <p class="text-justify"><strong>Resumen:</strong>
+                        Decimos que un grupo de isometrías del espacio euclidiano n-dimensional es
+                        discreto si el conjunto de imágenes de cualquier punto bajo todos
+                        los elementos del grupo es un subconjunto discreto del espacio (es
+                        decir, no tiene puntos de acumulación). Los ejemplos más sencillos
+                        de visualizar son los grupos de simetrías de poliedros o de
+                        teselaciones del espacio.<br>
+
+                        En la primera mitad del siglo XX el destacado geómetra Donald Coxeter
+                        estudió los grupos discretos de isometrías en espacios euclidianos
+                        (desde 2 dimensiones en adelante) generados por reflexiones en
+                        hiperplanos. Esto fue motivado por su afición por los sólidos
+                        platónicos así como a sus generalizaciones a dimensiones mayores a
+                        3, ya que los grupos de simetría de esos objetos precisamente son
+                        generados por reflexiones en hiperplanos.<br>
+
+                        En este curso presentaremos la lista completa de los grupos discretos de
+                        isometrías euclidianas generados por reflexiones en hiperpanos.
+                        También se hablará de sus generalizaciones y del impacto que estos
+                        grupos han tenido en otras áreas de matemáticas."
+
+                        </p>
+                    <hr>
+                    <p><strong>C1 - R y Linux para análisis científicos reproducibles, <em>Dra. Nelly Sélem-Abel Lovaco</em></strong></p>
+                    <p class="text-justify"><strong>Resumen:</strong><br>R<br>
+                        El objetivo de esta lección es enseñar a las programadoras principiantes a escribir códigos
+                        modulares y adoptar buenas prácticas en el uso de R para el análisis de datos.
+                        R nos provee un conjunto de paquetes desarrollados por terceros que se usan comúnmente en
+                        diversas disciplinas científicas para el análisis estadístico.
+                        Encontramos que muchos científicos que asisten a los talleres de Software
+                        Carpentry utilizan R y quieren aprender más. Nuestros materiales son relevantes ya
+                        que proporcionan a los asistentes una base sólida en los fundamentos de R y enseñan
+                        las mejores prácticas del cómputo científico: desglose del análisis en módulos,
+                        automatización tareas y encapsulamiento.<br>
+                        Ten en cuenta que este taller se enfoca en los fundamentos del lenguaje de programación R
+                        y no en el análisis estadístico.<br>
+                        A lo largo de este taller se utilizan una variedad de paquetes desarrollados por terceros,
+                        los cuales no son necesariamente los mejores ni se encuentran explicadas todas sus
+                        funcionalidades, pero son paquetes que consideramos útiles y han sido elegidos
+                        principalmente por su facilidad de uso.<br><br>
+                        Linux<br>
+                        La terminal de Unix ha existido por más tiempo que la mayoría de sus usuarios.
+                        Ha sobrevivido tanto tiempo porque es una herramienta poderosa que permite a las personas
+                        hacer cosas complejas con sólo unas pocas teclas. Lo más importante es que ayuda a combinar
+                        programas existentes de nuevas maneras y automatizar tareas repetitivas, en vez de estar
+                        escribiendo las mismas cosas una y otra vez. El uso del terminal o shell es fundamental para
+                        usar muchas otras herramientas poderosas y recursos informáticos
+                        (incluidos los supercomputadores o “computación de alto rendimiento”).
+                        Esta lección te guiará en el camino hacia el uso eficaz de estos recursos.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large modal G2 -->
+    <div class="modal fade g2" tabindex="-1" role="dialog" aria-labelledby="g2">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cursos G2</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>A2 - Geometría de polinomios de una variable compleja, <em>Dr. Jesús Muciño</em></strong></p>
+                    <p class="text-justify"><strong>Resumen:</strong> </p>
+                    <hr>
+                    <p><strong>B2 - Conjuntos convexos y números, <em>Dr. Edgardo Roldán</em></strong></p>
+                    <p class="text-justify"><strong>Resumen:</strong> Veremos
+                        cómo se puede usar la geometría Euclidiana, principalmente el
+                        concepto de convexidad, para demostrar resultados de teoría de
+                        números. La principal herramienta será el teorema de Minkowski que
+                        da condiciones suficientes para que un conjunto convexo contenga un
+                        punto de coordenadas enteras. Uno de los corolarios que obtendremos
+                        es que cada número primo congruente con 1 módulo 4 puede ser
+                        escrito como la suma de dos enteros.</p>
+                    <hr>
+                    <p><strong>C2 - Por anunciar, <em>Dr. Jesús Hernández</em></strong></p>
+                    <p class="text-justify"><strong>Resumen:</strong>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {#
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('form_index') }}">Back to the list</a>
+            </li>
+        </ul> #}
+
+{% endblock %}
+
+    {% block footer %}
+        <div class="container">
+            <br><br>
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <ul class="list-unstyled">
+                            <li class="pull-right">
+                                <a href="#top"><i class="fa fa-arrow-circle-up"></i> Subir</a>
+                            </li>
+                        </ul>
+                        {# <p><a href="http://matmor.unam.mx" rel="nofollow"><img src="{{ asset('bundles/ccmesver14esver/images/ccm-color.png') }}" alt="Logo CCM" width="121px" height="35px"/></a></p>
+                           <p><a href="http://unam.mx" rel="nofollow">UNAM</a></p>
+                         #}
+                    </div>
+                </div>
+            </footer>
+        </div>
+    {% endblock %}

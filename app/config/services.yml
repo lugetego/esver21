@@ -1,0 +1,26 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+    evento: 'XXI Escuela de Verano en Matemáticas'
+    eventoc: 'XXI Escuela de Verano en Matemáticas'
+    url: 'http://www.matmor.unam.mx/eventos/esver21'
+    comite: 'Naila Angelina'
+
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.listener.command_exception:
+        class: RegistroBundle\EventListener\ConsoleExceptionListener
+        arguments: ['@logger']
+        tags:
+            - { name: kernel.event_listener, event: console.exception }
+
+    app.listener.command_error:
+        class: RegistroBundle\EventListener\ErrorLoggerListener
+        arguments: ['@logger']
+        tags:
+            - { name: kernel.event_listener, event: console.terminate }
