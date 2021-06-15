@@ -74,7 +74,7 @@ class FormType extends AbstractType
 
             ))
             ->add('porcentaje', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
-                'label'=>'*Porcentaje de avance (hasta noviembre 2020)',
+                'label'=>'*Porcentaje de avance (hasta mayo 2021)',
                 'choices'=>array(
                     '50'=>'50',
                     '60'=>'60',
@@ -163,7 +163,7 @@ class FormType extends AbstractType
                 'required'=>false,
 
             ))
-          
+
             ->add('confirmado', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'=>array(
                     true=>'Si',
