@@ -43,7 +43,7 @@ class FormController extends Controller
     {
 
         $now = new \DateTime();
-        $deadline = new \DateTime('2021-06-25');
+        $deadline = new \DateTime('2021-06-21');
         if($now >= $deadline){
             return $this->render('form/newClosed.html.twig');
         }
@@ -75,7 +75,7 @@ class FormController extends Controller
                 ->setBody($this->renderView('form/mail.txt.twig', array('entity' => $registro)))
             ;
             $mailer->send($message);
-         
+
             return $this->render('form/confirm.html.twig', array('id' => $registro->getId(),'entity'=>$registro));
 
         }
